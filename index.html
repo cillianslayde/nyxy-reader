@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nyxy E-Reader</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/epubjs/dist/epub.min.js"></script>
+</head>
+<body id="app-root">
+    <header class="system-header">
+        <div class="brand">
+            <span class="main-title">NYXY-E-READER</span>
+            <span class="ver-tag">v1f</span>
+        </div>
+        <div class="page-counter">
+            <input type="number" id="page-input" min="1" value="1">
+            <span id="page-total">/ 0</span>
+        </div>
+        <div class="actions">
+            <button id="toggle-spread" class="ctrl-btn btn-red">SINGLE_PAGE</button>
+            <button id="zoom-out" class="ctrl-btn btn-red">ZOOM-</button>
+            <button id="zoom-in" class="ctrl-btn btn-red">ZOOM+</button>
+            <input type="file" id="file-selector" accept=".epub,.pdf" hidden>
+            <label for="file-selector" class="ctrl-btn btn-red">UPLOAD_DOC</label>
+            <button id="toggle-fs" class="ctrl-btn btn-red">FULLSCREEN</button>
+        </div>
+    </header>
+
+    <section class="workspace">
+        <aside id="sidebar-tree" class="book-tree-sidebar">
+            <div class="vertical-label">LIBRARY</div>
+            <ul id="active-book-list"></ul>
+        </aside>
+
+        <main id="reader-stage">
+            <button id="btn-prev" class="nav-arrow nav-left" aria-label="Previous">&#8249;</button>
+            
+            <div id="display-frame" class="spread-view">
+                <div id="epub-render-target" class="viewer-layer"></div>
+                <div id="pdf-render-layer" class="viewer-layer spread-container" style="display: none;">
+                    <canvas id="pdf-canvas-left" class="page-half"></canvas>
+                    <canvas id="pdf-canvas-right" class="page-half"></canvas>
+                </div>
+                <div id="fallback-ui">
+                    <p>SYSTEM_IDLE</p>
+                    <small>TWO-PAGE SPREAD ACTIVE</small>
+                </div>
+            </div>
+            
+            <button id="btn-next" class="nav-arrow nav-right" aria-label="Next">&#8250;</button>
+        </main>
+    </section>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

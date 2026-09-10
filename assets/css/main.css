@@ -1,0 +1,253 @@
+/**
+ * Version 1f Stylesheet
+ * Primary: #C7A140 (Gold) | Accent: #e0c070 (Light Gold)
+ * NO BLUE ALLOWED.
+ */
+
+:root {
+    --core-red: #C7A140;
+    --warning-yellow: #e0c070;
+    --interface-bg: #1a1a1a;
+    --panel-bg: #1e1e1e;
+    --paper-white: #ffffff;
+    --text-light: #eeeeee;
+    --font-solid: 'Inter', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--interface-bg);
+    color: var(--text-light);
+    font-family: var(--font-solid);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Header */
+.system-header {
+    height: 55px;
+    background-color: var(--panel-bg);
+    border-bottom: 2px solid var(--core-red);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+    z-index: 100;
+}
+
+.main-title {
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: var(--warning-yellow);
+}
+
+.ver-tag {
+    color: var(--core-red);
+    font-size: 0.7rem;
+    font-weight: 800;
+    margin-left: 10px;
+    border: 1px solid var(--core-red);
+    padding: 2px 6px;
+}
+
+.page-counter {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--warning-yellow);
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+#page-input {
+    width: 60px;
+    padding: 4px 8px;
+    background: var(--panel-bg);
+    border: 1px solid var(--core-red);
+    color: var(--warning-yellow);
+    font-family: var(--font-solid);
+    font-weight: 700;
+    text-align: center;
+}
+
+#page-input:focus {
+    outline: 2px solid var(--warning-yellow);
+}
+
+.ctrl-btn {
+    background-color: var(--core-red);
+    color: white;
+    padding: 8px 15px;
+    font-weight: 800;
+    font-size: 0.7rem;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.2s;
+}
+
+.ctrl-btn:hover {
+    background-color: #8a6e2a;
+}
+
+/* Workspace */
+.workspace {
+    flex: 1;
+    display: flex;
+    width: 100vw;
+}
+
+/* Sidebar 5% */
+.book-tree-sidebar {
+    width: 5vw;
+    background-color: var(--panel-bg);
+    border-right: 1px solid var(--core-red);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+    transition: width 0.25s ease-in-out;
+    overflow-x: hidden;
+    z-index: 50;
+}
+
+.book-tree-sidebar:hover {
+    width: 18vw;
+}
+
+.vertical-label {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    color: var(--core-red);
+    font-weight: 900;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+#active-book-list {
+    list-style: none;
+    width: 100%;
+}
+
+.list-entry {
+    padding: 12px 8px;
+    border-bottom: 1px solid #222;
+    cursor: pointer;
+    font-size: 0.7rem;
+    color: #999;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.list-entry:hover {
+    background-color: var(--core-red);
+    color: white;
+}
+
+/* Reader Stage */
+#reader-stage {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0 60px;
+}
+
+#display-frame {
+    width: 100%;
+    max-width: 1200px;
+    height: 85vh;
+    background-color: var(--paper-white);
+    position: relative;
+    box-shadow: 0 0 40px rgba(199, 161, 64, 0.4);
+    overflow: auto;
+    display: flex;
+    transition: max-width 0.3s ease;
+}
+
+/* Single page mode */
+#display-frame.single-page-mode {
+    max-width: 700px;
+}
+
+.viewer-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* PDF Spread Styles */
+.spread-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ddd;
+    gap: 2px;
+    overflow: auto;
+}
+
+.spread-container.single-page {
+    justify-content: center;
+}
+
+.page-half {
+    height: auto;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.spread-container.single-page .page-half:last-child {
+    display: none;
+}
+
+/* EPUB Container */
+#epub-render-target {
+    background: white;
+    overflow: auto;
+}
+
+/* Navigation */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--core-red);
+    font-size: 5rem;
+    cursor: pointer;
+    z-index: 200;
+    transition: color 0.2s;
+}
+
+.nav-left {
+    left: 10px;
+}
+
+.nav-right {
+    right: 10px;
+}
+
+.nav-arrow:hover {
+    color: var(--warning-yellow);
+}
+
+#fallback-ui {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #111;
+}
